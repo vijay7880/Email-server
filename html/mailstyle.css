@@ -1,0 +1,60 @@
+body{
+    margin:0px;
+    padding: 0px;
+}
+h1{
+    color: chocolate;
+    font-size: 30px;
+    font-family: 'Times New Roman', Times, serif;
+
+}
+.frm{
+    margin: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 5px 5px 10px rgb(8, 8, 8);
+    
+
+}
+.inp{
+    height: 30px;
+    width: 50%;
+    padding: 10px;
+    font-size: 20px;
+    border-radius: 5px;
+    font-family: 'Times New Roman', Times, serif;
+}
+.text{
+    height: 200px;
+    width: 50%;
+    padding: 10px;
+    font-size: 20px;
+    border: 2px solid black;
+    border-radius: 5px;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.btn{
+    width: 50%;
+    padding: 10px;
+    font-size: 20px;
+    background-color: rgb(126, 14, 218);
+    color: white;
+   box-shadow: 2px 2px 5px rgb(8, 8, 8);
+    font-family: 'Times New Roman', Times, serif;
+}
+.btn:hover{
+    background-color: rgb(38, 67, 155);
+    cursor: pointer;
+    
+}
+.att{
+    height: 30px;
+    width: 300px;
+    padding: 10px;
+    font-size: 20px;
+    border-radius: 5px;
+    border:2px solid black;
+    font-family: 'Times New Roman', Times, serif;
+}

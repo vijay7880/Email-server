@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-mail Box</title>
+    <link rel="stylesheet" href="mailstyle.css">
+</head>
+<body>
+    <form class="frm" action="/email-send"method="post"enctype="multipart/form-data">
+        <h1>Email Sending Server</h1>
+        <input class="inp"type="text" placeholder="from" name="from">
+        <br>
+        <input class="inp"type="password"placeholder="Enter App Password" name="password">
+        <br>
+         <input class="inp"type="text" placeholder="To" name="To">
+        <br>
+        <input class="inp" type="text" placeholder="CC"name="cc">
+        <br>
+        <input class="inp" type="text" placeholder="BCC" name="bcc">
+        <br>
+        <input class="inp" type="text" placeholder="enter Subject" name="subject">
+        <br>
+        <textarea class="text" type="text" name="mail" placeholder="enter mail"></textarea>
+        <br>
+        <input class="att" type="file"name="file">
+        <br>
+        <button class="btn">Send-mail</button>
+        <br>
+        
+
+    </form>
+    
+</body>
+</html>
