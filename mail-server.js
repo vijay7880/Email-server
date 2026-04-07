@@ -26,7 +26,9 @@ app.use(express.urlencoded({extended:false}));
 app.get("/",(req,resp)=>{
     resp.render('email');
 });
-app.post("/email-send",upload.single('file'),(req,resp)=>{
+app.post("/email-send",upload.single('file'), async (req,resp)=>{
+    try{
+        console.log(req.body);
     const tranporter = nodemailer.createTransport({
         host:"smtp.gmail.com",
         port:587,
@@ -61,15 +63,16 @@ app.post("/email-send",upload.single('file'),(req,resp)=>{
         return resp.send("write mail or send files");
     }  
    
-    tranporter.sendMail(mailOptions,(error,info)=>{
-        if(error){
-            console.log(error);
-        }else{
-            resp.send("mail successfully send");
-        }
-        console.log("body",req.body);
-        console.log("file",req.file);
-        console.log("mail",req.mailOptions);
+    const info = await tranporter.sendMail(mailOptions)
+    console.log("Success",info);
+    resp.send(""message send");
+
+}
+         catch(error){
+         console.log("error");
+resp.send(error.message);
+         }
+     
         if(req.file){
             fs.unlink(req.file.path,(err)=>{
                 if(err){
@@ -79,7 +82,7 @@ app.post("/email-send",upload.single('file'),(req,resp)=>{
                     console.log("file Deleted");
                 }
             })
-        }
+        
     });
  
 });
