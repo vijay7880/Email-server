@@ -28,7 +28,10 @@ app.get("/",(req,resp)=>{
 });
 app.post("/email-send",upload.single('file'),(req,resp)=>{
     const tranporter = nodemailer.createTransport({
-    service:'gmail',
+        host:"smtp.gmail.com",
+        port:587,
+        secure:false,
+        family:4,
     auth:{
         user:req.body.from,
         pass:req.body.password
