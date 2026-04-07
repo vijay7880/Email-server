@@ -2,6 +2,8 @@ import express from 'express';
 import path from 'path';
 import nodemailer from 'nodemailer';
 import multer from 'multer';
+import fs from 'fs';
+const PORT = 3200;
 
 const app = express();
 const abspath = path.resolve('html');
@@ -21,9 +23,6 @@ app.set('view engine','ejs');
 app.use(express.static(abspath))
 app.use(express.urlencoded({extended:false}));
 
-
-
-
 app.get("/",(req,resp)=>{
     resp.render('email');
 });
@@ -36,7 +35,6 @@ app.post("/email-send",upload.single('file'),(req,resp)=>{
 
     }
 });
-  
     
     const mailOptions={
         from:req.body.from,
@@ -48,29 +46,40 @@ app.post("/email-send",upload.single('file'),(req,resp)=>{
         
     
     };
+
     if(req.file){
           mailOptions.attachments = [{
-            file:req.file.originalname,
+            filename:req.file.originalname,
             path:req.file.path
         }];
 
     }
     if(!req.body.mail && !req.file){
         return resp.send("write mail or send files");
-    }
-        
-    
- 
-    console.log(req.body);
-    console.log(req.file);
+    }  
+   
     tranporter.sendMail(mailOptions,(error,info)=>{
         if(error){
             console.log(error);
         }else{
             resp.send("mail successfully send");
         }
+        if(req.file){
+            fs.unlink(req.file.path,(err)=>{
+                if(err){
+                    console.log(err);
+                }
+                else{
+                    console.log("file Deleted");
+                }
+            })
+        }
     });
-
-    
+ 
 });
-app.listen(3200);
+
+  
+app.listen(PORT,()=>{
+    console.log("server start",PORT)
+});
+
