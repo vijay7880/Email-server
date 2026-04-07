@@ -67,6 +67,9 @@ app.post("/email-send",upload.single('file'),(req,resp)=>{
         }else{
             resp.send("mail successfully send");
         }
+        console.log("body",req.body);
+        console.log("file",req.file);
+        console.log("mail",req.mailOptions);
         if(req.file){
             fs.unlink(req.file.path,(err)=>{
                 if(err){
